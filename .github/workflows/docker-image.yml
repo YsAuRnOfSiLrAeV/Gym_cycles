@@ -33,7 +33,9 @@ jobs:
       - name: Extract repo name
         id: meta
         run: |
-          IMAGE=ghcr.io/${{ github.repository_owner }}/gymcycles
+          OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          REPO_LOWER=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
+          IMAGE=ghcr.io/${OWNER_LOWER}/${REPO_LOWER}
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
 
       - name: Build and push
