@@ -43,8 +43,11 @@ The application will be available at http://localhost:8080
 
 ## Tech Stack
 
+- Maven
 - Spring Boot 3.4.5
+- Hibernate
 - PostgreSQL
 - React/TypeScript
 - Vite
 - Tailwind CSS
+- Docker

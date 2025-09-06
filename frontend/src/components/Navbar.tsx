@@ -44,7 +44,9 @@ export default function Navbar() {
   return (
     <nav className="w-full fixed bg-white border-b border-[#aaaaaa] px-4 lg:px-12 z-50">
       <div className="h-16 flex items-center justify-between">
-        <div className="text-2xl font-bold logo-brown-anim">GymCycles</div>
+        <div className="text-2xl font-bold logo-brown-anim">
+          <Link to="/">GymCycles</Link>
+        </div>
 
         <div className="flex items-center gap-6">
           <div className="hidden lg:flex items-center border border-[#4E342E] px-3 py-1.5 rounded-md w-64">
@@ -70,7 +72,8 @@ export default function Navbar() {
 
           <button
             onClick={() => setSearchOpen(!searchOpen)}
-            className="text-[#4E342E] block lg:hidden"
+            aria-expanded={searchOpen}
+            className="text-[#4E342E] block lg:hidden transition-transform duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -113,17 +116,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      {searchOpen && (
-        <div className="block lg:hidden mt-2 mb-4 px-4">
-          <div className="flex items-center border border-[#4E342E] px-3 py-2 rounded-md w-full">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="flex-1 outline-none text-[#4E342E] placeholder-[#4E342E] text-base"
-            />
-          </div>
+      <div className={`lg:hidden px-4 overflow-hidden transition-all duration-300 ease-in-out ${searchOpen ? "max-h-20 mt-2 mb-4 opacity-100" : "max-h-0 mt-0 mb-0 opacity-0"}`}>
+        <div className="flex items-center border border-[#4E342E] px-3 py-2 rounded-md w-full">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="flex-1 outline-none text-[#4E342E] placeholder-[#4E342E] text-base"
+          />
         </div>
-      )}
+      </div>
     </nav>
   );
 }

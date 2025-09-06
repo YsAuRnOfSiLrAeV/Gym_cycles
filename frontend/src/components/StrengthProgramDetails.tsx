@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import ExcelJS from 'exceljs';
@@ -40,6 +40,13 @@ export default function HypertrophyProgramDetails() {
   const [squatPr, setSquatPr] = useState(userData?.squatPr || 0);
   const [deadliftPr, setDeadliftPr] = useState(userData?.deadliftPr || 0);
   const [program, setProgram] = useState<TrainingWeek[]>([]);
+  const downloadRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (program.length > 0) {
+      downloadRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [program]);
 
   const onGenerate = async () => {
     setLoading(true);
@@ -400,6 +407,7 @@ export default function HypertrophyProgramDetails() {
           </button>
           {program.length > 0 && (
             <>
+              <div ref={downloadRef} />
               <button
                 className="w-full mt-8 px-5 py-2.5 bg-[#b94018] text-white font-poppins rounded hover:opacity-90 hover:cursor-pointer"
                 onClick={() => exportPdf(program)}

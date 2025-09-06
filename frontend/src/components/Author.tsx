@@ -32,7 +32,7 @@ export default function Author() {
             </p>
   
             <div>
-              <p className="font-poppins font-semibold mb-2">My achievements at 17 years old:</p>
+              <p className="font-poppins font-semibold mb-2">My achievements at 18 years old:</p>
               <ul className="list-disc list-inside pl-4 space-y-1">
                 <li>Candidate Master of Sports in bench press</li>
                 <li>Candidate Master of Sports in deadlift</li>

@@ -50,16 +50,22 @@ export default function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
           Program list
         </Link>
 
-        <button onClick={handleMenuToggle} className="text-black">
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+        <button onClick={handleMenuToggle} aria-expanded={menuOpen} className="text-black transition-transform duration-200">
+          {menuOpen ? (
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="lg:hidden space-y-4 mt-4">
-          <div className="pt-6 border-t border-[#d5c1ba]">
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="space-y-4">
+          <div className="mt-4 pt-6 border-t border-[#d5c1ba]">
             <div className="text-2xl font-poppins font-semibold">General information</div>
             <ul className="mt-2 space-y-1">
               <li><Link to="/organization" onClick={handleLinkClick} className={linkClass("/organization")}>Organization of training</Link></li>
@@ -78,7 +84,7 @@ export default function Sidebar({ isOpen, closeSidebar }: SidebarProps) {
             </ul>
           </div>
         </div>
-      )}
+      </div>
 
       <div className="hidden lg:block">
         <Link to="/">
